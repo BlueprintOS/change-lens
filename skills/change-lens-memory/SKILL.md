@@ -1,7 +1,7 @@
 ---
 name: change-lens-memory
 description: |
-  Use when the user explicitly enters `/change-lens-memory plus flags`, names `$change-lens-memory`, or asks to record/list/remove/prune reusable lessons from change-lens usage. Maintains optional global and project pitfall memories, reminds before matching commands, and writes only after explicit user confirmation.
+  Use when the user explicitly invokes `change-lens-memory` through an agent-supported command form such as `/change-lens-memory ...`, `$change-lens-memory`, or a named skill call, or asks to record/list/remove/prune reusable lessons from change-lens usage. Maintains optional global and project pitfall memories, reminds before matching commands, and writes only after explicit user confirmation.
 ---
 
 # change-lens-memory
@@ -19,7 +19,7 @@ Read `references/schema.md` before adding, updating, removing, or pruning memori
 
 ## Storage
 
-- Global: `${CODEX_HOME:-~/.codex}/skills/change-lens-memory/.memories.md`
+- Global: the installed `change-lens-memory/.memories.md` for the active Agent CLI, for example `${CODEX_HOME:-~/.codex}/skills/change-lens-memory/.memories.md`, `${CLAUDE_HOME:-~/.claude}/skills/change-lens-memory/.memories.md`, or `${OPENCODE_HOME:-~/.opencode}/skills/change-lens-memory/.memories.md`
 - Project: `.change-lens/.memories.md`
 
 Global memories are private and should not be committed. Project memories may be committed if the team wants shared reminders.

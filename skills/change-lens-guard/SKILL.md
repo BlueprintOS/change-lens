@@ -1,7 +1,7 @@
 ---
 name: change-lens-guard
 description: |
-  Use when the user explicitly enters `/change-lens-guard plus a subcommand`, names `$change-lens-guard`, or asks for small, controlled, auditable production-code modifications. Converts locate results into a change manifest, locks allowed files/symbols, detects scope escape, and audits git diff after coding. Do not implement the code change directly as part of this skill; enforce boundaries and stop on unauthorized expansion.
+  Use when the user explicitly invokes `change-lens-guard` through an agent-supported command form such as `/change-lens-guard ...`, `$change-lens-guard`, or a named skill call, or asks for small, controlled, auditable production-code modifications. Converts locate results into a change manifest, locks allowed files/symbols, detects scope escape, and audits git diff after coding. Do not implement the code change directly as part of this skill; enforce boundaries and stop on unauthorized expansion.
 ---
 
 # change-lens-guard

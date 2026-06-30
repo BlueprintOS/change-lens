@@ -1,7 +1,7 @@
 ---
 name: change-lens-locate
 description: |
-  Use only when the user explicitly enters `/change-lens-locate plus a subcommand` or names `$change-lens-locate`. Provides read-only, stateless code location commands: find symbols, identify context for file:line, list references, estimate 1-2 layer impact, and draft a concept card. Do not use for vague exploration, task planning, design review, or project/domain-specific knowledge.
+  Use only when the user explicitly invokes `change-lens-locate` through an agent-supported command form such as `/change-lens-locate ...`, `$change-lens-locate`, or a named skill call. Provides read-only, stateless code location commands: find symbols, identify context for file:line, list references, estimate 1-2 layer impact, and draft a concept card. Do not use for vague exploration, task planning, design review, or project/domain-specific knowledge.
 ---
 
 # change-lens-locate
@@ -20,14 +20,14 @@ Read `references/subcommands.md` for command-specific steps and output templates
 
 ## Operating Rules
 
-1. Require an explicit slash command. If the user only says "find code" or gives an unknown concept, suggest general exploration instead of invoking this skill.
+1. Require an explicit change-lens invocation. If the user only says "find code" or gives an unknown concept, suggest general exploration instead of invoking this skill.
 2. Always output concrete `file:line` locations when hits exist.
 3. Report three states clearly: hits, partial hits with caveats, or no hits with next-step suggestions.
 4. Prefer `rg`; use ctags for symbol precision when available; use tree-sitter filtering when available.
 5. If ctags or tree-sitter is missing, continue with a visible precision warning.
 6. Do not assume any language, framework, company, industry, database, or domain model.
 7. Keep examples domain-neutral (`orders`, `items`, `users`).
-8. For production edits, stop after locating and recommend `/change-lens-guard` to lock scope.
+8. For production edits, stop after locating and recommend `change-lens-guard` to lock scope.
 
 ## Minimal Workflow
 

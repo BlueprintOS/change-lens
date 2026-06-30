@@ -1,7 +1,7 @@
 ---
 name: change-lens-report
 description: |
-  Use when the user explicitly enters `/change-lens-report plus a subcommand` or names `$change-lens-report`. Generates or updates optional `.change-lens/` code-view reports, crosschecks user-provided documents against code, and diffs report snapshots. Writes files only for generate, update, snapshot, or explicit crosscheck --output. Must ask for ambiguous document context instead of auto-guessing.
+  Use when the user explicitly invokes `change-lens-report` through an agent-supported command form such as `/change-lens-report ...`, `$change-lens-report`, or a named skill call. Generates or updates optional `.change-lens/` code-view reports, crosschecks user-provided documents against code, and diffs report snapshots. Writes files only for generate, update, snapshot, or explicit crosscheck --output. Must ask for ambiguous document context instead of auto-guessing.
 ---
 
 # change-lens-report

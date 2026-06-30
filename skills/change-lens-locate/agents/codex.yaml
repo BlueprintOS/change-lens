@@ -1,0 +1,11 @@
+interface:
+  display_name: "Change Lens Locate"
+  short_description: "Read-only code location commands"
+  default_prompt: "Use $change-lens-locate to find a symbol, reference, or impact area."
+compatibility:
+  cli: "codex"
+  install_path: "${CODEX_HOME:-~/.codex}/skills/change-lens-locate"
+  note: "Codex-compatible SKILL.md layout; install the whole skill folder."
+usage:
+  trigger: "$change-lens-* or /change-lens-* when supported by the active Codex surface"
+  rule: "Use the same SKILL.md contract as Claude and OpenCode; do not rely on Codex-only behavior."

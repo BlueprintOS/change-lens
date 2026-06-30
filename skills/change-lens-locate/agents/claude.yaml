@@ -8,4 +8,4 @@ compatibility:
   note: "Claude-compatible SKILL.md layout; install the whole skill folder."
 usage:
   trigger: "$change-lens-locate"
-  rule: "Use only for explicit /change-lens-locate commands."
+  rule: "Use only for explicit change-lens-locate invocations."

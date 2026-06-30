@@ -13,11 +13,21 @@
 
 | Agent CLI | 支持方式 | 默认安装目录 |
 |---|---|---|
-| Codex | 原生 skill 目录，含 `SKILL.md` + `agents/openai.yaml` | `${CODEX_HOME:-~/.codex}/skills/` |
+| Codex | 原生 skill 目录，含 `SKILL.md` + `agents/codex.yaml` | `${CODEX_HOME:-~/.codex}/skills/` |
 | Claude | 兼容 skill 目录，含 `SKILL.md` + `agents/claude.yaml` | `${CLAUDE_HOME:-~/.claude}/skills/` |
 | OpenCode | skill 目录 + `AGENTS.change-lens.md` companion 文件 | `${OPENCODE_HOME:-~/.opencode}/skills/` |
 
 > 说明：Codex 和 Claude 使用每个 skill 目录中的 `SKILL.md` 作为主要入口。OpenCode 通过同一套 skill 文件加 `templates/opencode/AGENTS.md` 生成的 companion 指令使用。
+
+## 调用方式
+
+`change-lens` 不绑定某一个 Agent CLI。使用时按当前工具支持的形式调用同一个 skill：
+
+| Agent CLI | 推荐调用形式 |
+|---|---|
+| Codex | `$change-lens-locate`、`$change-lens-guard`、`$change-lens-report`、`$change-lens-memory`，或当前 Codex surface 支持的 `/change-lens-*` |
+| Claude | `$change-lens-locate`、`$change-lens-guard`、`$change-lens-report`、`$change-lens-memory` |
+| OpenCode | `/change-lens-locate`、`/change-lens-guard`、`/change-lens-report`、`/change-lens-memory` |
 
 ## 安装
 
@@ -204,7 +214,7 @@ python3 scripts/manage-agent-install.py uninstall --agent codex --target "$HOME/
 
 存储位置：
 
-- 全局：`${CODEX_HOME:-~/.codex}/skills/change-lens-memory/.memories.md`
+- 全局：当前 Agent CLI 的安装目录，例如 `${CODEX_HOME:-~/.codex}/skills/change-lens-memory/.memories.md`、`${CLAUDE_HOME:-~/.claude}/skills/change-lens-memory/.memories.md` 或 `${OPENCODE_HOME:-~/.opencode}/skills/change-lens-memory/.memories.md`
 - 项目：`.change-lens/.memories.md`
 
 写入原则：默认只读提醒；新增记录或更新触发次数必须先得到用户确认。
@@ -238,7 +248,7 @@ templates/
 ## 设计边界
 
 - 通用：不包含真实公司、行业、客户、业务域、表名、接口路径或合规知识。
-- 显式触发：默认只响应 `/change-lens-*` 或 `$change-lens-*`。
+- 显式触发：默认只响应当前 Agent CLI 支持的 change-lens 调用形式，例如 `/change-lens-*`、`$change-lens-*` 或命名 skill 调用。
 - 小步受控：生产修改必须先定位，再锁范围，再编码，最后审计。
 - 可降级：缺少外部工具时继续工作，但必须说明精度下降。
 
@@ -257,9 +267,19 @@ templates/
 
 | Agent CLI | Support mode | Default install directory |
 |---|---|---|
-| Codex | Native skill folder with `SKILL.md` + `agents/openai.yaml` | `${CODEX_HOME:-~/.codex}/skills/` |
+| Codex | Native skill folder with `SKILL.md` + `agents/codex.yaml` | `${CODEX_HOME:-~/.codex}/skills/` |
 | Claude | Compatible skill folder with `SKILL.md` + `agents/claude.yaml` | `${CLAUDE_HOME:-~/.claude}/skills/` |
 | OpenCode | Skill folder plus `AGENTS.change-lens.md` companion instructions | `${OPENCODE_HOME:-~/.opencode}/skills/` |
+
+## Invocation
+
+`change-lens` is not bound to a single Agent CLI. Invoke the same skill through the form supported by the active tool:
+
+| Agent CLI | Recommended invocation form |
+|---|---|
+| Codex | `$change-lens-locate`, `$change-lens-guard`, `$change-lens-report`, `$change-lens-memory`, or `/change-lens-*` when supported by the active Codex surface |
+| Claude | `$change-lens-locate`, `$change-lens-guard`, `$change-lens-report`, `$change-lens-memory` |
+| OpenCode | `/change-lens-locate`, `/change-lens-guard`, `/change-lens-report`, `/change-lens-memory` |
 
 ## Install
 
@@ -440,7 +460,7 @@ Use it to preserve reusable lessons and avoid repeated mistakes.
 
 Storage:
 
-- Global: `${CODEX_HOME:-~/.codex}/skills/change-lens-memory/.memories.md`
+- Global: the active Agent CLI install directory, for example `${CODEX_HOME:-~/.codex}/skills/change-lens-memory/.memories.md`, `${CLAUDE_HOME:-~/.claude}/skills/change-lens-memory/.memories.md`, or `${OPENCODE_HOME:-~/.opencode}/skills/change-lens-memory/.memories.md`
 - Project: `.change-lens/.memories.md`
 
 Write rule: reminders are read-only by default; adding records or updating trigger counts requires user confirmation.
@@ -474,6 +494,6 @@ templates/
 ## Boundaries
 
 - Domain-neutral: no real company, industry, customer, private system, table, endpoint, or compliance knowledge.
-- Explicit trigger: defaults to `/change-lens-*` or `$change-lens-*` only.
+- Explicit trigger: defaults to the active Agent CLI's supported change-lens invocation form, such as `/change-lens-*`, `$change-lens-*`, or named skill calls.
 - Scoped changes: locate first, lock scope second, code third, audit last.
 - Graceful degradation: continue when external tools are missing, but state precision loss.

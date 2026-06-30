@@ -9,4 +9,4 @@ compatibility:
   note: "Use SKILL.md plus the OpenCode AGENTS companion instructions."
 usage:
   trigger: "$change-lens-locate"
-  rule: "Use only for explicit /change-lens-locate commands."
+  rule: "Use only for explicit change-lens-locate invocations."
