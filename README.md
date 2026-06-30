@@ -26,7 +26,13 @@
 ```bash
 git clone https://github.com/BlueprintOS/change-lens.git
 cd change-lens
-python3 scripts/manage-agent-install.py install --agent all
+./install.sh
+```
+
+`install.sh` 默认执行 `install --agent all`。如果需要覆盖已有安装：
+
+```bash
+./install.sh --force
 ```
 
 ### 从 GitHub 只安装到某一个 Agent CLI
@@ -34,16 +40,16 @@ python3 scripts/manage-agent-install.py install --agent all
 ```bash
 git clone https://github.com/BlueprintOS/change-lens.git
 cd change-lens
-python3 scripts/manage-agent-install.py install --agent codex
-python3 scripts/manage-agent-install.py install --agent claude
-python3 scripts/manage-agent-install.py install --agent opencode
+./install.sh --agent codex
+./install.sh --agent claude
+./install.sh --agent opencode
 ```
 
 如果已经 clone 过仓库，直接进入目录执行安装脚本即可：
 
 ```bash
 cd change-lens
-python3 scripts/manage-agent-install.py install --agent all
+./install.sh
 ```
 
 ### 指定安装目录
@@ -59,7 +65,7 @@ python3 scripts/manage-agent-install.py install --agent opencode --target "$HOME
 ### 覆盖已有安装
 
 ```bash
-python3 scripts/manage-agent-install.py install --agent all --force
+./install.sh --force
 ```
 
 ### 更新到最新版并重新安装
@@ -67,7 +73,7 @@ python3 scripts/manage-agent-install.py install --agent all --force
 ```bash
 cd change-lens
 git pull
-python3 scripts/manage-agent-install.py install --agent all --force
+./install.sh --force
 ```
 
 ### 手动安装
@@ -94,7 +100,7 @@ cp templates/opencode/AGENTS.md "${OPENCODE_HOME:-$HOME/.opencode}/AGENTS.change
 ### 从全部 Agent CLI 卸载
 
 ```bash
-python3 scripts/manage-agent-install.py uninstall --agent all
+./install.sh uninstall --agent all
 ```
 
 ### 只从某一个 Agent CLI 卸载
@@ -262,7 +268,13 @@ templates/
 ```bash
 git clone https://github.com/BlueprintOS/change-lens.git
 cd change-lens
-python3 scripts/manage-agent-install.py install --agent all
+./install.sh
+```
+
+`install.sh` runs `install --agent all` by default. To overwrite an existing install:
+
+```bash
+./install.sh --force
 ```
 
 ### Install from GitHub for one Agent CLI
@@ -270,16 +282,16 @@ python3 scripts/manage-agent-install.py install --agent all
 ```bash
 git clone https://github.com/BlueprintOS/change-lens.git
 cd change-lens
-python3 scripts/manage-agent-install.py install --agent codex
-python3 scripts/manage-agent-install.py install --agent claude
-python3 scripts/manage-agent-install.py install --agent opencode
+./install.sh --agent codex
+./install.sh --agent claude
+./install.sh --agent opencode
 ```
 
 If you already cloned the repository, enter it and run the installer directly:
 
 ```bash
 cd change-lens
-python3 scripts/manage-agent-install.py install --agent all
+./install.sh
 ```
 
 ### Install into a custom directory
@@ -295,7 +307,7 @@ python3 scripts/manage-agent-install.py install --agent opencode --target "$HOME
 ### Overwrite an existing install
 
 ```bash
-python3 scripts/manage-agent-install.py install --agent all --force
+./install.sh --force
 ```
 
 ### Update to the latest version and reinstall
@@ -303,7 +315,7 @@ python3 scripts/manage-agent-install.py install --agent all --force
 ```bash
 cd change-lens
 git pull
-python3 scripts/manage-agent-install.py install --agent all --force
+./install.sh --force
 ```
 
 ### Manual install
@@ -330,7 +342,7 @@ cp templates/opencode/AGENTS.md "${OPENCODE_HOME:-$HOME/.opencode}/AGENTS.change
 ### Uninstall from all supported Agent CLIs
 
 ```bash
-python3 scripts/manage-agent-install.py uninstall --agent all
+./install.sh uninstall --agent all
 ```
 
 ### Uninstall from one Agent CLI
