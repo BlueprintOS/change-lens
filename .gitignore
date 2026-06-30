@@ -1,0 +1,13 @@
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Local runtime outputs from using the skills in this repo
+.change-lens/archive/
+.change-lens/.last-scan.json
+
+# Python/cache artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/

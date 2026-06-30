@@ -1,0 +1,12 @@
+interface:
+  display_name: "Change Lens Locate"
+  short_description: "Read-only code location commands"
+  default_prompt: "Use $change-lens-locate when working with change-lens workflows."
+compatibility:
+  cli: "opencode"
+  install_path: "${OPENCODE_HOME:-~/.opencode}/skills/change-lens-locate"
+  companion_file: "${OPENCODE_HOME:-~/.opencode}/AGENTS.change-lens.md"
+  note: "Use SKILL.md plus the OpenCode AGENTS companion instructions."
+usage:
+  trigger: "$change-lens-locate"
+  rule: "Use only for explicit /change-lens-locate commands."

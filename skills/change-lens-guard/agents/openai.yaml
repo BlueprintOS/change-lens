@@ -1,0 +1,4 @@
+interface:
+  display_name: "Change Lens Guard"
+  short_description: "Guardrails for scoped code changes"
+  default_prompt: "Use $change-lens-guard to lock and audit a scoped production change."

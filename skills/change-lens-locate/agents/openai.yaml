@@ -1,0 +1,4 @@
+interface:
+  display_name: "Change Lens Locate"
+  short_description: "Read-only code location commands"
+  default_prompt: "Use $change-lens-locate to find a symbol, reference, or impact area."

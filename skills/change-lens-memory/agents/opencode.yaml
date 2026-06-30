@@ -1,0 +1,12 @@
+interface:
+  display_name: "Change Lens Memory"
+  short_description: "Record and reuse change-lens pitfalls"
+  default_prompt: "Use $change-lens-memory when working with change-lens workflows."
+compatibility:
+  cli: "opencode"
+  install_path: "${OPENCODE_HOME:-~/.opencode}/skills/change-lens-memory"
+  companion_file: "${OPENCODE_HOME:-~/.opencode}/AGENTS.change-lens.md"
+  note: "Use SKILL.md plus the OpenCode AGENTS companion instructions."
+usage:
+  trigger: "$change-lens-memory"
+  rule: "Use for pitfall memory add/list/remove/prune commands."

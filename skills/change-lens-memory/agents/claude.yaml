@@ -1,0 +1,11 @@
+interface:
+  display_name: "Change Lens Memory"
+  short_description: "Record and reuse change-lens pitfalls"
+  default_prompt: "Use $change-lens-memory when working with change-lens workflows."
+compatibility:
+  cli: "claude"
+  install_path: "${CLAUDE_HOME:-~/.claude}/skills/change-lens-memory"
+  note: "Claude-compatible SKILL.md layout; install the whole skill folder."
+usage:
+  trigger: "$change-lens-memory"
+  rule: "Use for pitfall memory add/list/remove/prune commands."

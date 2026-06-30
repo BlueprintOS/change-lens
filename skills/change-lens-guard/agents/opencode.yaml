@@ -1,0 +1,12 @@
+interface:
+  display_name: "Change Lens Guard"
+  short_description: "Guardrails for scoped code changes"
+  default_prompt: "Use $change-lens-guard when working with change-lens workflows."
+compatibility:
+  cli: "opencode"
+  install_path: "${OPENCODE_HOME:-~/.opencode}/skills/change-lens-guard"
+  companion_file: "${OPENCODE_HOME:-~/.opencode}/AGENTS.change-lens.md"
+  note: "Use SKILL.md plus the OpenCode AGENTS companion instructions."
+usage:
+  trigger: "$change-lens-guard"
+  rule: "Use for scoped production-change planning and diff audits."

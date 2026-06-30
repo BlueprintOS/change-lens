@@ -1,0 +1,4 @@
+interface:
+  display_name: "Change Lens Memory"
+  short_description: "Record and reuse change-lens pitfalls"
+  default_prompt: "Use $change-lens-memory to record or list lessons from change-lens usage."

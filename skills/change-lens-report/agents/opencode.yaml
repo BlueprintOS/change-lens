@@ -1,0 +1,12 @@
+interface:
+  display_name: "Change Lens Report"
+  short_description: "Generate and compare code view reports"
+  default_prompt: "Use $change-lens-report when working with change-lens workflows."
+compatibility:
+  cli: "opencode"
+  install_path: "${OPENCODE_HOME:-~/.opencode}/skills/change-lens-report"
+  companion_file: "${OPENCODE_HOME:-~/.opencode}/AGENTS.change-lens.md"
+  note: "Use SKILL.md plus the OpenCode AGENTS companion instructions."
+usage:
+  trigger: "$change-lens-report"
+  rule: "Use for .change-lens reports and document crosschecks."

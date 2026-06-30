@@ -1,0 +1,4 @@
+interface:
+  display_name: "Change Lens Report"
+  short_description: "Generate and compare code view reports"
+  default_prompt: "Use $change-lens-report to generate or update a project code view."
