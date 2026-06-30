@@ -1,0 +1,61 @@
+name: Bug report
+description: Report something the skills did that they should not, or failed to do that they should.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Which skill
+      description: Select the change-lens sub-skill that misbehaved.
+      options:
+        - change-lens-locate
+        - change-lens-guard
+        - change-lens-report
+        - change-lens-memory
+        - Installer (install.sh / manage-agent-install.py)
+    validations:
+      required: true
+  - type: dropdown
+    id: cli
+    attributes:
+      label: Agent CLI
+      description: Which Agent CLI were you running on?
+      options:
+        - Codex
+        - Claude
+        - OpenCode
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: A clear, factual description. Include the exact command and its output.
+      placeholder: |
+        /change-lens-locate impact src/orders/service.py::OrderService::process
+        → expected: 5 files
+        → actual: 12 files, including tests/
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: Repository path, file layout, skill + command, any `.change-lens/` artifacts in play.
+      validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: OS, shell, Python version, Agent CLI version, whether ctags / tree-sitter are installed.
+      validations:
+      required: false

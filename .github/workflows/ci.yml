@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  smoke:
+    name: Install + uninstall smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Make installer executable
+        run: chmod +x install.sh
+
+      - name: Bash syntax check
+        run: bash -n install.sh
+
+      - name: Python syntax check
+        run: |
+          python3 -m py_compile scripts/manage-agent-install.py
+
+      - name: Installer help works
+        run: ./install.sh --help
+
+      - name: Python helper help works
+        run: python3 scripts/manage-agent-install.py --help
+
+      - name: Required skill files exist
+        run: |
+          set -e
+          for s in change-lens-locate change-lens-guard change-lens-report change-lens-memory; do
+            test -f "skills/$s/SKILL.md" || { echo "missing skills/$s/SKILL.md"; exit 1; }
+          done
+          test -f templates/opencode/AGENTS.md
+
+      - name: Forced install then uninstall cycle (sandboxed HOME)
+        env:
+          HOME: ${{ runner.temp }}/fake-home
+        run: |
+          mkdir -p "$HOME"
+          ./install.sh --force
+          for s in change-lens-locate change-lens-guard change-lens-report change-lens-memory; do
+            test -d "$HOME/.codex/skills/$s"
+            test -d "$HOME/.claude/skills/$s"
+            test -d "$HOME/.opencode/skills/$s"
+          done
+          test -f "$HOME/.opencode/AGENTS.change-lens.md"
+          ./install.sh uninstall --agent all
+          test ! -d "$HOME/.codex/skills/change-lens-locate"
+          test ! -d "$HOME/.claude/skills/change-lens-locate"
+          test ! -d "$HOME/.opencode/skills/change-lens-locate"
+          test ! -f "$HOME/.opencode/AGENTS.change-lens.md"

@@ -1,0 +1,48 @@
+name: Feature request
+description: Propose a new skill, subcommand, or behavior that change-lens should ship.
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Target skill
+      options:
+        - change-lens-locate
+        - change-lens-guard
+        - change-lens-report
+        - change-lens-memory
+        - Installer
+        - New skill
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the workflow pain point you hit.
+      validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: New subcommand, flag, output shape, or design sketch. Keep it small and concrete.
+      validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      validations:
+      required: false
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Boundary check
+      description: |
+        change-lens is domain-neutral. Does the proposal introduce company, industry,
+        customer, internal system, table, endpoint, or compliance-specific knowledge?
+        If yes, explain why it belongs here anyway.
+      validations:
+      required: true
