@@ -4,6 +4,8 @@
 
 `change-lens` 是一组通用 Agent CLI skills，用来把“我要找/改哪段代码”变成可定位、可约束、可审计的工作流。
 
+当前版本：`v1.1.0`。本版本强化了小步改代码的护栏：manifest baseline、audit-lite、三段式审计输出，以及 `impact` 的置信度/盲区提示。
+
 - `change-lens-locate`：只读定位，支持 `find`、`where`、`refs`、`impact`、`draft-concept`。
 - `change-lens-guard`：生产修改护栏，生成/锁定 `change-manifest.json`，审计 `git diff` 是否越界。
 - `change-lens-report`：可选报告，生成/更新 `.change-lens/`，做文档交叉审核和快照 diff。
@@ -270,6 +272,8 @@ templates/
 # English
 
 `change-lens` is a general-purpose Agent CLI skill collection for turning “where is this code?” and “how do I change it safely?” into a locatable, scoped, and auditable workflow.
+
+Current version: `v1.1.0`. This release tightens guardrails for small code changes with manifest baselines, audit-lite, three-part audit output, and `impact` confidence/blind-spot reporting.
 
 - `change-lens-locate`: read-only location commands: `find`, `where`, `refs`, `impact`, and `draft-concept`.
 - `change-lens-guard`: production-change guardrails with `change-manifest.json` and `git diff` audits.

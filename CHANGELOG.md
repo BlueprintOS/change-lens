@@ -5,6 +5,24 @@ The format follows [Keep a Changelog](https://keepachangelog.com/) and the proje
 
 ---
 
+## [1.1.0] — 2026-07-03
+
+> **Small-change guardrail release.**
+> Tightens the `change-lens-guard` workflow without adding a full CLI engine.
+
+### Changed
+
+- **Manifest baseline** — `change-manifest.json` examples now use `manifest_version: "1.1"` and record `baseline.git_head`, `baseline.created_at`, and `baseline.preexisting_changed_files` to avoid misclassifying dirty-worktree changes as new scope escapes.
+- **Audit output** — guard audits now separate `file_scope`, `symbol_scope`, and `checks`, making symbol-level uncertainty explicit instead of implying full precision.
+- **Lightweight edits** — `plan --ephemeral` documents a chat-only scope for low-risk small edits and reports the final result as audit-lite, not as a locked manifest audit.
+- **Impact honesty** — `change-lens-locate impact` now requires `Confidence` and `Blind spots` so static impact estimates are not mistaken for complete call graphs.
+- **Docs sync** — README and OpenCode companion instructions now describe the v1.1.0 workflow and audit wording.
+
+### Notes
+
+- This release remains documentation-contract only; it does not introduce a standalone executable `change-lens` CLI.
+- The workflow remains domain-neutral and Agent CLI agnostic.
+
 ## [1.0.0] — 2026-06-30
 
 > **Initial public release.**
@@ -44,4 +62,5 @@ A single repo that installs four cooperating skills for any supported Agent CLI:
 - No tags created in this commit. The `v1.0.0` cut is documented here for parity with future Git Releases.
 - See `README.md` for end-to-end install and usage. The `.github/RELEASE_NOTES_v1.0.0.md` file carries the same narrative as a single, shareable artifact.
 
+[1.1.0]: https://github.com/BlueprintOS/change-lens/releases/tag/v1.1.0
 [1.0.0]: https://github.com/BlueprintOS/change-lens/releases/tag/v1.0.0
