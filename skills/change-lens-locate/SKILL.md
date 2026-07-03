@@ -1,7 +1,7 @@
 ---
 name: change-lens-locate
 description: |
-  Use only when the user explicitly invokes `change-lens-locate` through an agent-supported command form such as `/change-lens-locate ...`, `$change-lens-locate`, or a named skill call. Provides read-only, stateless code location commands: find symbols, identify context for file:line, list references, estimate 1-2 layer impact, and draft a concept card. Do not use for vague exploration, task planning, design review, or project/domain-specific knowledge.
+  Use only when the user explicitly invokes `change-lens-locate` through an agent-supported command form such as `/change-lens-locate ...`, `$change-lens-locate`, or a named skill call. Provides read-only, stateless code location commands: find symbols, identify context for file:line, list references, estimate likely 1-2 layer impact, and draft a concept card. Do not use for vague exploration, task planning, design review, or project/domain-specific knowledge.
 ---
 
 # change-lens-locate
@@ -13,7 +13,7 @@ Provide read-only, real-time code location. Do not write files unless the user e
 - `find <pattern>`: locate definitions for classes, functions, variables, or files.
 - `where <file:line>`: identify the containing symbol and nearby context.
 - `refs <symbol>`: find references, preferably filtering comments and strings when syntax tooling is available.
-- `impact <file::func>`: show direct callers and callees; default to depth 1.
+- `impact <file::func>`: estimate likely direct callers and callees; default to depth 1.
 - `draft-concept <name>`: output a draft concept card to chat, not to disk.
 
 Read `references/subcommands.md` for command-specific steps and output templates. Read `references/tools.md` before running tool-dependent searches. Read `references/project-config.md` when `.change-lens.yaml` exists or the project is large.

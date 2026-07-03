@@ -54,13 +54,28 @@ Steps:
 
 ## `impact <file::func>`
 
-Use to estimate direct call impact.
+Use to estimate likely direct call impact.
 
 Steps:
 1. Resolve the target definition.
 2. Upstream: call internal `refs` and identify containing symbols for each reference.
 3. Downstream: inspect target body and list called symbols.
 4. Default to `--depth 1`; allow `--depth 2` only with timeout/truncation warnings.
+5. Always include `Confidence` and `Blind spots` in the output.
+
+Output:
+
+```markdown
+## Likely impact for `src/orders/service.py::process`
+
+**Confidence**: medium - text-level refs found, no tree-sitter call graph.
+**Blind spots**: reflection, generated code, macros, cross-process runtime calls, and third-party internals.
+
+| Direction | Location | Symbol | Evidence |
+|---|---|---|---|
+| upstream | src/orders/api.py:88 | submit_order | text reference |
+| downstream | src/orders/repository.py:41 | save_order | call inside target body |
+```
 
 Warn that static analysis cannot reliably follow reflection, generated code, macros, cross-process runtime calls, or third-party internals.
 

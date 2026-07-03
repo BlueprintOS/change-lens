@@ -4,9 +4,16 @@ Default path: `.change-lens/change-manifest.json`.
 
 ```json
 {
-  "manifest_version": "1.0",
+  "manifest_version": "1.1",
   "task": "Fix order partial processing bug",
   "created_at": "2026-06-30T15:30:00+08:00",
+  "baseline": {
+    "git_head": "abc1234",
+    "created_at": "2026-06-30T15:30:00+08:00",
+    "preexisting_changed_files": [
+      "docs/notes.md"
+    ]
+  },
   "allowed_files": [
     "src/orders/service.py",
     "tests/orders/test_partial_process.py"
@@ -37,5 +44,7 @@ Default path: `.change-lens/change-manifest.json`.
   ]
 }
 ```
+
+`baseline` records the repository state at lock time. During audit, files listed in `preexisting_changed_files` are reported separately and are not counted as new scope escapes unless their diff changed after lock time can be proven.
 
 Use neutral examples only. Replace sample names with project-specific names only when they come from the user's actual locate results.

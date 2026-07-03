@@ -154,6 +154,7 @@ python3 scripts/manage-agent-install.py uninstall --agent codex --target "$HOME/
 - 默认只读，不写盘。
 - 输出必须包含具体 `file:line`。
 - 缺少 `ctags` 或 `tree-sitter` 时会降级，并明确提示精度下降。
+- `impact` 是静态估算，必须输出 `Confidence` 和 `Blind spots`。
 - 找不到时不会自动进入自由探索，只给下一步建议。
 
 ### 2. 锁定修改范围：`/change-lens-guard`
@@ -162,6 +163,7 @@ python3 scripts/manage-agent-install.py uninstall --agent codex --target "$HOME/
 
 ```text
 /change-lens-guard plan "Fix order partial processing bug"
+/change-lens-guard plan --ephemeral "Fix a one-file display bug"
 /change-lens-guard lock --from .change-lens/change-manifest.json
 /change-lens-guard audit
 /change-lens-guard explain-escape src/common/date_utils.py
@@ -173,7 +175,9 @@ python3 scripts/manage-agent-install.py uninstall --agent codex --target "$HOME/
 2. 用 `/change-lens-guard plan` 生成授权范围。
 3. 用户确认后 `lock` 到 `.change-lens/change-manifest.json`。
 4. 编码时只改 `allowed_files`。
-5. 完成后运行 `/change-lens-guard audit` 审计 diff。
+5. 完成后运行 `/change-lens-guard audit`，按 `file_scope`、`symbol_scope`、`checks` 审计 diff。
+
+小改路径：低风险、通常不超过 2 个生产文件且不涉及 schema、migration、auth、common utility 时，可以用 `plan --ephemeral` 在聊天中锁定临时范围；最终只能输出 audit-lite，不能声称已完成锁定 manifest 审计。
 
 ### 3. 生成代码视图报告：`/change-lens-report`
 
@@ -228,7 +232,16 @@ python3 scripts/manage-agent-install.py uninstall --agent codex --target "$HOME/
 /change-lens-guard lock --from .change-lens/change-manifest.json
 # code within allowed files only
 /change-lens-guard audit
-/change-lens-report update --code-only
+# optional: /change-lens-report update --code-only
+```
+
+小改可用轻量路径：
+
+```text
+/change-lens-locate find <known-symbol-or-concept>
+/change-lens-guard plan --ephemeral "<small task>"
+# code within the chat-only scope only
+/change-lens-guard audit
 ```
 
 ## 仓库结构
@@ -400,6 +413,7 @@ Rules:
 - Read-only by default.
 - Output concrete `file:line` locations.
 - If `ctags` or `tree-sitter` is missing, degrade visibly.
+- `impact` is a static estimate and must include `Confidence` and `Blind spots`.
 - On no hits, suggest next steps instead of starting broad exploration automatically.
 
 ### 2. Guard the Change Scope: `/change-lens-guard`
@@ -408,6 +422,7 @@ Use it before and after production-code changes.
 
 ```text
 /change-lens-guard plan "Fix order partial processing bug"
+/change-lens-guard plan --ephemeral "Fix a one-file display bug"
 /change-lens-guard lock --from .change-lens/change-manifest.json
 /change-lens-guard audit
 /change-lens-guard explain-escape src/common/date_utils.py
@@ -419,7 +434,9 @@ Recommended flow:
 2. Use `/change-lens-guard plan` to draft the authorized scope.
 3. Lock the scope into `.change-lens/change-manifest.json` after user confirmation.
 4. Code only inside `allowed_files`.
-5. Run `/change-lens-guard audit` before delivery.
+5. Run `/change-lens-guard audit` before delivery, reporting `file_scope`, `symbol_scope`, and `checks`.
+
+Small-change path: for low-risk edits that usually touch no more than two production files and do not involve schema, migrations, auth, or common utilities, use `plan --ephemeral` to state a chat-only scope. The final result is audit-lite only; do not claim a locked manifest audit.
 
 ### 3. Generate Code-View Reports: `/change-lens-report`
 
@@ -474,7 +491,16 @@ Write rule: reminders are read-only by default; adding records or updating trigg
 /change-lens-guard lock --from .change-lens/change-manifest.json
 # code within allowed files only
 /change-lens-guard audit
-/change-lens-report update --code-only
+# optional: /change-lens-report update --code-only
+```
+
+Small edits may use the lightweight path:
+
+```text
+/change-lens-locate find <known-symbol-or-concept>
+/change-lens-guard plan --ephemeral "<small task>"
+# code within the chat-only scope only
+/change-lens-guard audit
 ```
 
 ## Repository Layout
